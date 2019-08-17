@@ -1,0 +1,260 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+   
+    height:100vh;
+    width:100vw;
+    max-width:1200px;
+    margin:0 auto;
+    
+}
+
+main{
+    /* background-color:rgba(254,343,23,.3); */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height:100%;
+    border-radius: 10px;
+    background:rgb(0, 0, 0);
+    /* background-image:url("../img/leaf_border.gif"); */
+    color:yellow;
+}
+
+header{
+    
+    font-size:2.3em;
+    display:flex;
+    justify-content: center;
+    letter-spacing:2px;
+    font-family: 'Poor Story', sans-serif;
+    color:yellow;
+    text-shadow:.5px .5px black;
+    /* border-radius:5px; */
+    background-color:rgb(0, 0, 0);
+    /* line-height: 40px; */
+    position:relative;
+    height:5%;
+}
+
+.title, .right-panel{
+    z-index:2;
+}
+.right-panel{
+    display:flex;
+    
+}
+.score-board{
+    font-size:.8em;
+    /* line-height: 40px; */
+
+}
+.message-board{
+    display:flex;
+   
+    font-size: 1em;
+    font-family:Ubuntu;
+    width:100%;
+}
+
+.message-inner{
+    display:flex;
+    justify-content: space-between;
+    border:1px solid white;
+    font-size:1em;
+    /*background-image:url("../img/math_board2.gif");*/
+    background-color:rgb(0, 0, 0);
+  
+    width:100%;
+
+}
+
+
+
+.eq-wrapper{
+    opacity:1;
+    display:flex;
+    flex-direction: column;
+    font-family: 'Ubuntu', sans-serif;
+    /* display:none; */
+    /* margin:5px; */
+    background:black;
+    height:80%;
+    width:90%;
+    margin: 0 auto;
+    padding-top:5%;
+
+}
+.equation{
+    text-align:right;
+    display:flex;
+    /* align-items:center; */
+    justify-content:flex-start;
+    margin-bottom: 2px;
+    height:12%;
+}
+.equation div{
+    width:13%;
+    letter-spacing: 4px;
+    /*margin:0px 50px;*/
+    text-align:right;
+    font-size:1.3em;
+}
+.eq-wrapper div input[type='text']{
+    width:100%;
+    border:1px solid black;
+    height:1.3em;
+    font-size:1em;
+    border-radius:5px;;
+    text-align: right;
+    font-family: Ubuntu, sans-serif;
+    /* background-color:khaki; */
+    background:black;
+    color:brown;
+    text-shadow:1px 1px black;
+    border:1px solid yellow;
+    letter-spacing: 4px;
+}
+div.operator, div.equalsSign{
+    text-align:center;
+}
+.btn-operator{
+    width:3em;
+    /* height:2.5em; */
+}
+.btn-operators{
+    display:flex;
+    justify-content: space-between
+}
+.play-btn{
+    width:20%;
+    background:green;
+}
+.check-btn{
+    background-color:lightblue;
+    width:10%;
+    height:3.4em;
+    margin-left:5%;
+    font-size:.55em;
+    color:brown;
+    /*text-shadow:1px 1px brown;*/
+    border-radius:5px;
+    border:1px solid brown;
+    /* box-shadow:.5px .5px black; */
+    /* margin-top:5px; */
+}
+
+
+.bonus-msg{
+    font-family: 'Ubuntu', sans-serif;
+    font-size:16px;
+}
+.check{
+    color:yellow;
+}
+.fa-skull-crossbones{
+    color:red;
+}
+.fa-check-square{
+    color:green;
+}
+
+hr{
+    background-color:yellow;
+    height:3px;
+    margin-top:3px;
+}
+
+footer{
+    position:absolute;
+    bottom:50px;
+    display:flex;
+}
+.footer-inner{
+    position:relative;  
+}
+.fish{
+    position:absolute;
+    /*left:-10%;*/
+    /* display:none; */
+    width:20%;
+}
+.fishpic{
+    /* position:absolute; */
+    width:50%;
+    height:auto;
+      /*z-index: -1;*/
+    
+}
+.timer{
+    font-size:.8em;
+    /* font-family: 'Ubuntu', sans-serif; */
+    letter-spacing:2px;
+    color:yellow;
+    /* margin-right:50px; */
+}
+
+@media screen and (min-width:600px){
+    header{
+        font-size:3em;
+        padding-bottom:3%;
+    }
+    .message-inner{
+        font-size:2em;
+    }
+    .equation div{
+        font-size:2em;
+    }
+    .check-btn{
+        height:1.8em;
+        font-size:1.5em;
+    }
+    .btn-operator{
+        height:1.2em;
+        font-size:1em;
+    }
+    .play-btn{
+        font-size:.8em;
+    }
+    /* .fishpic{
+        height:.9em;
+    } */
+} 
+@media screen and (min-width:900px){
+    /* .fishpic{
+        height:1.3em;
+    } */
+}
+
+KEY FRAMES HERE
+
+@keyframes boxspinner{
+    0%{transform:translate(-500px)}
+  /*  25%{transform:scale(1.06)}
+    50%{transform:scale(1.07)}
+    75%{transform:scale(1.06)}*/
+    100%{{transform:scale(0px)}}
+}
+
+.equation{
+    animation:boxspinner .5s ease-in-out;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

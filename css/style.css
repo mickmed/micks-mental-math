@@ -82,7 +82,7 @@ header{
     /* display:none; */
     /* margin:5px; */
     background:black;
-    height:80%;
+    height:70%;
     width:90%;
     margin: 0 auto;
     padding-top:5%;
@@ -113,7 +113,7 @@ header{
     font-family: Ubuntu, sans-serif;
     /* background-color:khaki; */
     background:black;
-    color:brown;
+    color:yellow;
     text-shadow:1px 1px black;
     border:1px solid yellow;
     letter-spacing: 4px;

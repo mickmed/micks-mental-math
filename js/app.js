@@ -33,8 +33,8 @@ let eqVals = (a, b) => {
     if (eq.gameOperator === "+") {
         answer = firstNum + secondNum;
     }
-    if (eq.gameOperator === "-") {
-        answer = firstNum - secondNum;
+    if (eq.gameOperator === "*") {
+        answer = firstNum * secondNum;
     }
     return [firstNum, secondNum, answer];
 }
@@ -189,11 +189,37 @@ let sumTotals = (divClass) => {
     return total;
 }
 
+//sum total scores by className
+let timesTotals = (divClass) => {
+    let totalScores = document.querySelectorAll(divClass);
+    let total = 1;
+   
+    for (i = 0; i < totalScores.length; i++) {
+        if (totalScores[i].children.length > 0) {
+            if (isNaN(parseInt(totalScores[i].children[0].value))) {
+                totalScores[i].children[0].value = 0;
+            }
+            total *= parseInt(totalScores[i].children[0].value);
+        } else {
+            total *= parseInt(totalScores[i].innerText);
+        }
+    }
+    return total;
+}
+
 //make array of classes to be summed
 let numsTotalsArr = (arr) => {
     let numsTotals = [];
+    console.log(eq.gameOperator)
     arr.forEach((e) => {
-        numsTotals.push(sumTotals('.' + e));
+        if(eq.gameOperator === '+' ||
+            eq.gameOperator === '-'){
+            numsTotals.push(sumTotals('.' + e));
+        }
+        if(eq.gameOperator === '*'){
+            console.log(e)
+            numsTotals.push(timesTotals('.' + e))
+        }
     })
     return numsTotals;
 }
@@ -215,7 +241,7 @@ let appendBonusEq = (bonusEqDiv) => {
 
 let bonusEq = () => {
 
-    if (eq.eqWrapperLength > 4 && eq.eqWrapperLength < 6) {
+    if (eq.eqWrapperLength > eq.numOfRounds - 1 && eq.eqWrapperLength < eq.numOfRounds + 1) {
 
         addDivLine();
         addBonusMsg('Bonus Round');
@@ -225,12 +251,19 @@ let bonusEq = () => {
 }
 
 let chkAnswer = (eq, bonus) => {
+    
     let chkEqAns = chkCorrect(eq.userInput.value, eq.removedValue);
     styleAnswer(chkEqAns, eq.checkIcon, eq.eqDiv, eq.checkBtn, eq.eqDivNums, bonus);
     styleChkdEq(eq.eqDiv, eq.answer);
-
-    if (eq.eqWrapperLength === 5) {
-        if (eq.allCorrectArray.length === 5) {
+    if(eq.gameOperator === '+' || eq.gameOperator === '-'){
+        eq.numOfRounds = 5
+    }else if(eq.gameOperator === '*'){
+        eq.numOfRounds = 2
+    }
+    console.log(eq.numOfRounds, eq.allCorrectArray)
+    if (eq.eqWrapperLength === eq.numOfRounds) {
+        if (eq.allCorrectArray.length === eq.numOfRounds) {
+            console.log('inside')
             bonusEq();
         } else {
             clearInterval(eq.int);
@@ -244,7 +277,7 @@ let chkAnswer = (eq, bonus) => {
         eq.userInput.removeEventListener('keydown', keyChkAns);
         reset();
     }
-    if (eq.eqWrapperLength < 5) {
+    if (eq.eqWrapperLength < eq.numOfRounds) {
         play();
     }
 }
@@ -266,6 +299,8 @@ let play = (bonus) => {
     if (eq.bonus !== 'bonus') {
         eq.eqDivVals = eqVals(eq.vals.a, eq.vals.b);
     } else {
+        console.log((eq.eqDivNumsClass))
+        console.log(eq.gameOperator)
         eq.eqDivVals = numsTotalsArr(eq.eqDivNumsClass);
     }
     eq.eqDiv = appendEqDiv();
@@ -305,7 +340,7 @@ let start = () => {
 
 
 let reset = () => {
-    console.log('reset')
+    // console.log('reset') 
     resetBtn.addEventListener('click', () => {
         location.reload();
     })
@@ -313,11 +348,11 @@ let reset = () => {
 
     eq.level = eq.level + 1;
     eq.vals = new Object;
-    eq.vals.a = eq.level * 10;
-    eq.vals.b = eq.level * 50;
+    eq.vals.a = eq.level * 1;
+    eq.vals.b = eq.level * 5;
     console.log(playBtn)
     eq.level === 1 ? playBtn.innerText = `start level ${eq.level}` : playBtn.innerText = `start level ${eq.level}`;
-    console.log(eq.gameOperator)
+    // console.log(eq.gameOperator)
     if(eq.gameOperator === undefined){
          eq.gameOperator = '+'
         
@@ -353,7 +388,7 @@ let reset = () => {
         }
 
     })
-    console.log(eq.gameOperator)
+    // console.log(eq.gameOperator)
 
 
     playBtn.addEventListener('click', start);
@@ -381,7 +416,7 @@ reset();
 
 ////TIME OUT FUNCTIONS
 let timedOut = () => {
-    console.log(eq.userInput);
+    // console.log(eq.userInput);
     eq.userInput.disabled = true;
     eq.checkBtn.disabled = true;
     reset();

@@ -33,6 +33,9 @@ let eqVals = (a, b) => {
     if (eq.gameOperator === "+") {
         answer = firstNum + secondNum;
     }
+    if (eq.gameOperator === "-") {
+        answer = firstNum - secondNum;
+    }
     if (eq.gameOperator === "*") {
         answer = firstNum * secondNum;
     }
@@ -178,6 +181,7 @@ let sumTotals = (divClass) => {
     let total = 0;
     for (i = 0; i < totalScores.length; i++) {
         if (totalScores[i].children.length > 0) {
+            console.log('here')
             if (isNaN(parseInt(totalScores[i].children[0].value))) {
                 totalScores[i].children[0].value = 0;
             }
@@ -297,6 +301,7 @@ let clkChkAns = () => {
 let play = (bonus) => {
     eq.bonus = bonus;
     if (eq.bonus !== 'bonus') {
+        console.log('here')
         eq.eqDivVals = eqVals(eq.vals.a, eq.vals.b);
     } else {
         console.log((eq.eqDivNumsClass))
